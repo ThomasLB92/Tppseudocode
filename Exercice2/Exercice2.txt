@@ -1,0 +1,64 @@
+/* programme Point
+*  but : Pouvoir instancier des points et appeler ses méthodes getters et setters
+*  auteur : Thomas LE BOT
+*  date : 15/11/2021
+*/
+
+classe Point
+	x:reel
+	y:reel
+	
+	//constructeur de la classe point
+	fonction Point(x:reel, y:reel)
+	debut
+	this.x=x
+	this.y=y
+	fin
+	
+	//getters et setters
+	fonction getX()
+	debut
+	retourner x
+	fin
+	
+	fonction setX(nouvelX: reel)
+	debut
+	affecter nouvelX à X
+	fin
+	
+	fonction getY()
+	debut
+	retourner y
+	fin
+	
+	fonction setY(nouvelY: reel)
+	debut
+	affecter nouvelY à Y
+	fin
+	
+	//Affichage des infos du point sous forme de chaine de caractères
+	fonction toString()
+	debut
+	afficher     "Mes coordonnées sont " + str(x) +","+str(y)
+	fin
+	
+programme main
+	point1:Point
+	point2:Point
+debut
+	//instanciation des points test
+	point1(1,2);
+	point2(3,1);
+	
+	//test des fonctions
+	afficher point1.getX()
+	afficher point1.getY()
+	afficher point2.getX()
+	afficher point2.getY()
+	point1.setX(4)
+	point1.setY(3)
+	point2.setX(5)
+	point2.setY(2)
+
+
+fin

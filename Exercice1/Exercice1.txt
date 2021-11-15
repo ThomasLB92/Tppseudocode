@@ -1,0 +1,75 @@
+/* programme Hippopotame
+*  but : Pouvoir instancier des hippopotames et simuler leur cycle de vie
+*  auteur : Thomas LE BOT
+*  date : 15/11/2021
+*/
+
+classe Hippopotamus
+    name:chaine
+    weight:reel
+    tusksSize:reel
+	
+	//constructeur de la classe Hippopotame
+	fonction Hippopotamus(name:chaine, weight:reel, tusksSize:reel)
+	debut
+	this.name=name
+	this.weight=weight
+	this.tusksSize=tusksSize
+	fin
+	
+	//fonction nager on enlève 300 au poids
+    fonction swim()
+    debut
+        weight -= 300
+    fin
+	
+	//fonction manger on ajoute 1000 au poids
+    fonction eat()
+    debut
+        weight += 1000
+    fin
+	
+	//fonction se battre, l'hippopotame avec les plus longues défenses gagne
+    fonction fight(Hippopotamus opposant)
+    debut
+        si tusksSize > opposant.tusksSize alors
+            afficher "L hippopotame appelant a gagné"
+		si tusksSize < opposant.tusksSize alors
+            afficher "L opposant a gagné"
+        sinon
+            afficher "Egalité"
+        finsi
+    fin
+	
+	//Affichage des infos de l'hippopotame sous forme de chaine de caractères
+    fonction toString()
+    debut
+        afficher     "Mon nom est " + str(name) + 
+                    " je pèse " + str(weight) + 
+                    " et mes défenses ont une longueur de " + str(tusksSize)
+    fin
+fin
+
+//programme principal
+programme main
+    hippo1: Hippopotamus
+    hippo2: Hippopotamus
+    hippo3: Hippopotamus
+debut
+	//Instanciation des hippopotames test
+    hippo1("bertrand", 1300, 5)
+    hippo2("gerard", 1700, 4)
+	//test de la fonction se battre
+    hippo1.fight(hippo2)
+
+    hippo3("michel", 2400, 8)
+	//Simulation du cycle de vie d'un hippopotame
+    pour i allant de 1 à 21
+        pour j allant de 1 a 15
+            hippo3.eat().eat().swim().swim().swim()
+        finPour
+        hippo3.toString()
+        Afficher "fin de la journée " + str(i)
+    finPour
+
+fin

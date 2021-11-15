@@ -1,0 +1,64 @@
+/* programme Circle
+*  but : Pouvoir instancier des cercles, calculer leur aire et vérifier si est un point est contenu dans un cercle
+*  auteur : Thomas LE BOT
+*  date : 15/11/2021
+*/
+
+//importation de la classe point définie dans l'exercice 2
+import Point from ../Exercice2/Exercice2.txt
+
+classe Circle
+	point:Point
+	radius:reel
+	
+	//constructeur de la classe cercle, comprend un point
+	fonction Circle(point:Point, radius:reel)
+	debut
+	this.point=point
+	this.radius=radius
+	fin
+
+	//calcule l'aire du cercle
+	fonction area():double
+	debut
+	retourner (this.radius^2)*3.14
+	fin
+	
+	//Vérifie si le point donné en paramètre est dans le cercle
+	fonction containsPoint(point: Point): booleen
+	debut
+	si (point.x - this.point.x)^2 + (point.y - this.point.y)^2 < this.radius^2 alors
+	retourner vrai
+	sinon
+	retourner faux
+	finsi
+	fin
+	
+	//Affichage des infos du cercle sous forme de chaine de caractères
+	fonction toString()
+    debut
+        afficher     "Mon point a comme coordonées " + str(this.point.x)+","+str(this.point.y)+ 
+                    " et mon rayon est de " + str(radius)
+    fin
+	
+programme main
+	point1:Point
+	point2:Point
+	cercle1:Circle
+	cercle2:Circle
+debut
+	//instanciation des objets test
+	point1(1,3)
+	point2(2,5)
+	cercle1(point1,5)
+	cercle2(point2,4)
+	//test des fonctions area, containsPoint et toString
+	afficher cercle1.area()
+	afficher cercle2.area()
+	afficher cercle1.containsPoint(point1)
+	afficher cercle1.containsPoint(point2)
+	afficher cercle2.containsPoint(point1)
+	afficher cercle2.containsPoint(point2)
+	cercle1.toString()
+	cercle2.toString()
+fin
