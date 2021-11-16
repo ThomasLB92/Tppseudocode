@@ -1,0 +1,40 @@
+/* programme Chat
+*  but : Pouvoir gérer le chat et son historique
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+
+Classe Chat
+	id:reel
+	historique[]:chaine
+
+	//Constructeur de la classe Chat
+	fonction Chat(id:reel)
+	debut
+		this.id=id
+	fin
+
+	//getters et setters.
+
+	fonction getid()
+	debut
+		return this.id
+	fin
+
+	fonction setid(id:reel)
+	debut
+		this.id=id
+	fin
+
+	//affichage du chat, on affiche l'historique du chat courant
+	fonction afficherchat()
+	debut
+	pour i de 0 à this.historique.taille
+		afficher this.historique[i]+retour à la ligne
+	fin
+
+	//Envoi du message de la part d'un utilisateur ou d'un conseiller
+	fonction postermessage(message:chaine)
+	debut
+	this.historique[this.historique.taille+1] = message
+	fin

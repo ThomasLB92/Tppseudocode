@@ -1,0 +1,33 @@
+/* programme ContactManager
+*  but : Pouvoir recevoir des virements des utilisateurs
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+
+Classe ContactManager
+	prenom:chaine
+	nom:chaine
+	pays:chaine
+	iban:chaine
+	solde:reel //initialisé par la banque
+
+	//Constructeur de la classe ContactManager
+	fonction ContactManager(prenom:chaine,nom:chaine,pays:chaine,iban:chaine)
+	debut
+		this.prenom=prenom
+		this.nom=nom
+		this.pays=pays
+		this.iban=iban
+	fin
+
+	//getters et setters. On suppose que les autres sont définis
+
+	fonction getprenom()
+	debut
+		retourner this.prenom
+	fin
+
+	fonction setprenom(prenom:chaine)
+	debut
+		this.prenom=prenom
+	fin

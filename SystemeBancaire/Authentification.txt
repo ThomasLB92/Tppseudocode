@@ -1,0 +1,116 @@
+/* programme Authentification
+*  but : Pouvoir inscrire et authentifier un utilisateur pour qu'il puisse utiliser le système bancaire
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+import Chat
+import Conseiller
+
+Classe Authentification
+	prenom:chaine
+	nom:chaine
+	mail:chaine
+	motdepasse:chaine
+	solde:reel //Initialisé par la banque
+	listeContacts[]:chaine
+	conseiller: Conseiller //Défini par la banque
+
+	//Constructeur de la classe Authentification
+	fonction Authentification(prenom:chaine,nom:chaine,mail:chaine,motdepasse:chaine)
+	debut
+		this.prenom=prenom;
+		this.nom=nom;
+		this.chaine=chaine;
+		this.motdepasse=motdepasse;
+		//On suppose que le solde est associé par la banque
+	fin
+
+
+
+	//Getter et setter pour le champ prénom défini à titre d'exemple. On suppose que les getters et setters de chaque champ sont définis. (sauf pour le solde et le conseiller qu'il ne peut pas modifier manuellement)
+
+	fonction getPrenom()
+	debut
+	retourner this.prenom;
+	fin
+
+	fonction setPrenom(prenom:chaine)
+	debut
+	this.prenom=prenom;
+	fin
+
+	fonction authentifier()
+		mailsaisi:chaine
+		motdepassesaisi:chaine
+		continuer:booleen
+	debut
+		afficher "Saisissez votre mail"
+		tantque continuer!=vrai
+		saisir mailsaisi
+		si mailsaisi == this.mail alors
+		continuer=vrai
+		finsi
+		fintantque
+		affecter continuer=faux
+		saisir motdepassesaisi
+		tant que continuer!=vrai
+		si motdepassesaisi == this.motdepasse alors
+		continuer=vrai
+		finsi
+		fintantque
+		afficher "Vous êtes bien authentifié"
+	fin
+
+	fonction inscription()
+	debut
+		afficher "Veuillez saisir votre prénom, nom, mail et mot de passe"
+		saisir prenoms,noms,mails,motdepasses
+		si ces champs sont valides après toutes les vérifications nécessaires alors
+		this.setPrenom(prenoms)
+		this.setNom(noms)
+		this.setMail(mails)
+		this.setMotdepasse(motdepasses)
+	fin
+
+	//Envoie un message au conseiller
+	fonction envoyerMessage(chat:Chat, message:chaine)
+	debut
+		//On ajoute la date et l'heure d'envoi au message ainsi que le prenom de l'expéditeur
+		heuremessage:datetime
+		affecter heuremessage = datetime actuel
+		affecter message = heuremessage+" "+this.getPrenom()+": "+message
+		//on affecte le message à envoyer à l'historique
+		chat.postermessage(message)
+		//on affiche l'historique du chat
+		chat.afficherchat()
+	fin
+
+	//Ajouter un nouveau contact
+	fonction ajouterContact(contact:ContactManager)
+	debut
+		this.listeContacts[]+=contact
+	fin
+
+	//Supprimer un contact
+	fonction supprimerContact(contact:ContactManager)
+	debut
+		pour i de 0 à this.listeContacts[].taille
+		si this.listeContacts[i]==contact alors
+		this.listeContacts[i]==null
+		finsi
+		finpour
+	fin
+
+	//Afficher la liste des contacts de l'utilisateur
+	fonction afficherContacts()
+	debut
+	pour i de 0 à this.listeContacts.taille
+	afficher this.listeContact[i]
+	fin
+
+	fonction voirmesinfos()
+	debut
+		afficher "Je m'appelle "+this.prenom+" "+this.nom+", mon conseiller est "+this.conseiller.prenom+" "+this.conseiller.nom+" et mon solde est de "+this.solde
+	fin
+
+	

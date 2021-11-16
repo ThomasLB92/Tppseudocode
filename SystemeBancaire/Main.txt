@@ -1,0 +1,78 @@
+/* programme Main
+*  but : Programme principal, tester le système
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+
+import Authentification from './Authentification.txt'
+import ContactManager from './ContactManager.txt'
+import Transfer from './Transfer.txt'
+import Chat from './Chat.txt'
+import Conseiller from './Conseiller.txt'
+
+programme main
+	//Utilisateur possédant déjà un compte
+	user2: Authentification
+	//Contact situé en France
+	contact1: ContactManager
+	//Contact situé à l'international
+	contact2: ContactManager
+	//Service de transferts nationaux et internationaux
+	transfer: Transfer
+	//Chat
+	chat: Chat
+	//Conseiller
+	conseiller1: Conseiller
+debut
+	//Instanciation des utilisateurs
+	user2("Thomas","Le Bot","mailvalide@gmail.com","azerty1234")
+	//Instanciation des contacts
+	contact1('Jean','Dupont','France','exempleiban')
+	contact2('John','Smith','Etats-Unis','exempleiban2')
+	//Instanciation du service de transfert
+	transfert(1)
+	//Instanciation du chat
+	chat(1)
+
+	//Authentifcation de l'utilisateur
+	afficher "Possédez vous déjà un compte ?(Entrer 'o' ou 'n')"
+	saisir reponse
+	tantque reponse !='o' ou reponse !='n'
+	si reponse == 'o' alors
+	user2.authentifier();
+	si reponse == 'n' alors
+	user:chaine
+	user="user"+str(nombre aleatoire)
+	user:Authentification
+	user(null,null,null,null)
+	user.inscription()
+	sinon
+	afficher "Veuillez resaisir votre réponse ('o' ou 'n')"
+	finsi
+	fintantque
+
+	//Test de l'ajout d'un contact par un utilisateur
+	user2.ajouterContact(contact1)
+	//L'utilisateur souhaite supprimer un contact
+	user2.supprimerContact(contact1)
+	//L'utilisateur souhaite consulter sa liste de contacts
+	user2.afficherContacts()
+	//L'utilisateur souhaite voir ses infos
+	user2.voirmesinfos()
+	//il peut aussi modifier ses informations via les setters
+	user2.setmotdepasse("nouveaumdp")
+
+	//On prend le cas où user2 veut effectuer un virement de 100€ à contact1 (national)
+	transfert.effectuervirement(user2,contact1,100)
+	//user2 envoie 200€ a contact2 qui est à l'international
+	transfert.effectuervirement(user2,contact2,200)
+
+	//Test du chat
+	//user2 envoie un message sur le chat
+	user2.envoyermessage(chat,"Hello World")
+	//Le conseiller envoie un message sur le chat
+	conseiller1.envoyermessage(chat,"Hello World 2")
+	//Pour consulter l'historique du chat
+	chat.afficherchat()
+
+fin

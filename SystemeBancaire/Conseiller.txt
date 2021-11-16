@@ -1,0 +1,31 @@
+/* programme Conseiller
+*  but : Pouvoir communiquer avec les clients via le chat
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+import Chat
+
+Classe Conseiller
+	prenom:chaine
+	nom:chaine
+
+	fonction Conseiller(prenom:chaine,nom:chaine)
+	debut
+		this.prenom=prenom;
+		this.nom=nom;
+	fin
+
+	//Insérer getters et setters
+
+	//Envoie un message au client
+	fonction envoyerMessage(chat:Chat, message:chaine)
+	debut
+		//On ajoute la date et l'heure d'envoi au message ainsi que le prenom de l'expéditeur
+		heuremessage:datetime
+		affecter heuremessage = datetime actuel
+		affecter message = heuremessage+" "+this.getPrenom()+": "+message
+		//on affecte le message à envoyer à l'historique
+		chat.postermessage(message)
+		//on affiche l'historique du chat
+		chat.afficherchat()
+	fin

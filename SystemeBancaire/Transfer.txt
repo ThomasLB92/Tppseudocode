@@ -1,0 +1,72 @@
+/* programme Transfer
+*  but : Système de virements
+*  auteur : Thomas LE BOT
+*  date : 16/11/2021
+*/
+
+import Authentification
+import ContactManager
+
+Classe Transfer
+	id:reel
+
+	//Constructeur de la classe Transfer
+	fonction Transfer(id:reel)
+	debut
+		this.id=id
+	fin
+
+	//getters et setters.
+
+	fonction getid()
+	debut
+		retourner this.id
+	fin
+
+	fonction setid(id:reel)
+	debut
+		this.id=id
+	fin
+
+	fonction effectuervirement(user:Authentification,contact:ContactManager, montant:reel)
+	debut
+		si verifiercontact(user,contact)==vrai alors
+		si contact.getPays()=="France" alors
+		user.setSolde(user.getSolde()-montant)
+		contact.setSolde(contact.getSolde()+montant)
+		afficher "Virement national de "+montant+"€ effectué vers le contact "+contact.getPrenom()+" "+contact.getNom()
+		sinon
+		user.setSolde(user.getSolde()-this.convertir(contact,montant))
+		contact.setSolde(contact.getSolde()+this.convertir(contact,montant))
+		afficher "Virement de "+ this.convertir(contact,montant)+ " € effectué après application du taux de change vers le contact "+contact.getPrenom()+" "+contact.getNom()
+		finsi
+		finsi
+	fin
+
+	//Vérifie si l'utilisateur possède le contact auprès duquel il souhaite effecter le virement dans sa liste de contacts
+	fonction verifiercontact(user:Authentification,contact:ContactManager)
+	debut
+		verification:booleen
+		affecter verification à faux
+		pour i de 0 à user.getListeContacts().taille
+		si user.getListeContacts(i).nom == contact.getNom() alors
+		verification == vrai
+		finsi
+		finpour
+		retourner verification
+	fin
+
+	fonction convertir(montant:reel,contact:ContactManager)
+	debut
+		si(contact.getPays()=='Etats-Unis') alors
+		affecter montant = montant avec taux de change dollar
+		finsi
+		si(contact.getPays()=='Japon') alors
+		affecter montant = montant avec taux de change yen
+		finsi
+		si(contact.getPays()=='Royaume-Uni') alors
+		affecter montant = montant avec taux de change livre
+		finsi
+		//si la monnaie n'est pas prise en charge, retourne montant initial
+		retourner montant
+	fin
