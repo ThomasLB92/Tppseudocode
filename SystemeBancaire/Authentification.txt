@@ -43,6 +43,8 @@ Classe Authentification
 		mailsaisi:chaine
 		motdepassesaisi:chaine
 		continuer:booleen
+		reponse:chaine
+		nouveaumdp:chaine
 	debut
 		afficher "Saisissez votre mail"
 		tantque continuer!=vrai
@@ -56,6 +58,17 @@ Classe Authentification
 		tant que continuer!=vrai
 		si motdepassesaisi == this.motdepasse alors
 		continuer=vrai
+		sinon
+		afficher "Mot de passe oublié ? ('o' ou 'n')"
+		saisir reponse
+		si reponse=='o' alors
+		afficher "Saisissez le nouveau mot de passe"
+		saisir nouveaumdp
+		this.setmotdepasse(nouveaumdp)
+		finsi
+		si reponse=='n' alors
+		this.authentifier()
+		finsi
 		finsi
 		fintantque
 		afficher "Vous êtes bien authentifié"
