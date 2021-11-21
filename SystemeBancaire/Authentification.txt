@@ -70,8 +70,24 @@ Classe Authentification
 		this.authentifier()
 		finsi
 		finsi
+		//Authentification à 2 facteurs
+		affecter continuer=faux
+		si this.deuxfacteurs(this.mail) == vrai alors
+		affecter continuer=vrai
+		finsi
 		fintantque
 		afficher "Vous êtes bien authentifié"
+	fin
+
+	fonction deuxfacteurs(mail:chaine)
+	debut
+		Envoi du mail contenant un code a mail passé en paramètre
+		Saisir code
+		si le code saisi est le même que celui envoyé dans le mail alors
+		retourner vrai
+		sinon
+		retourner faux
+		finsi
 	fin
 
 	fonction inscription()
